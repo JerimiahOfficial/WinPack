@@ -15,6 +15,6 @@ foreach ($link in $links) {
         $link = [regex]::Match($request, $regex).Groups[1].Value
     }
 
-    $installerPath = Join-Path $env:HOMEPATH\downloads (Split-Path $link -Leaf)
+    $installerPath = Join-Path $env:HOMEPATH\downloads (Split-Path $link -Leaf).Replace("%20", " ")
     Invoke-WebRequest -Uri $link -OutFile $installerPath -ErrorAction Stop
 }
